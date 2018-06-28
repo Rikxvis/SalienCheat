@@ -71,7 +71,6 @@ $WaitTime = 110;
 $ZonePaces = [];
 $OldScore = 0;
 $LastKnownPlanet = 0;
-$LastKnownZone = 0;
 
 Msg( "{background-blue}Welcome to SalienCheat for SteamDB" );
 
@@ -291,7 +290,8 @@ function GetNextLevelProgress( $Data )
 		9600000, // Level 17
 		10800000, // Level 18
 		12000000, // Level 19
-		13200000, // Level 20
+		14600000, // Level 20
+		16800000, // Level 21
 	];
 
 	$PreviousLevel = $Data[ 'new_level' ] - 1;
@@ -466,8 +466,7 @@ function GetPlanetState( $Planet, &$ZonePaces, $WaitTime )
 	{
 		$CleanZones = $BossZones;
 	}
-
-	if( empty( $CleanZones ) )
+	else if( count( $CleanZones ) < 2 )
 	{
 		return false;
 	}
@@ -553,7 +552,7 @@ function GetBestPlanetAndZone( &$ZonePaces, $WaitTime )
 		}
 
 		Msg(
-			'>> Planet {green}%3d{normal} - Captured: {green}%5s%%{normal} - High: {yellow}%2d{normal} - Medium: {yellow}%2d{normal} - Low: {yellow}%2d{normal} - Players: {yellow}%8s {green}(%s)',
+			'>> Planet {green}%3d{normal} - Captured: {green}%5s%%{normal} - High: {yellow}%2d{normal} - Medium: {yellow}%2d{normal} - Low: {yellow}%2d{normal} - Players: {yellow}%7s {green}(%s)',
 			PHP_EOL,
 			[
 				$Planet[ 'id' ],
